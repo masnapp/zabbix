@@ -3,12 +3,12 @@ Goal:
 Spin up Zabbix container in GKE using Terraform. 
 
 Step 1: 
-Create project in Google cloud GUI
-Create credentials to access project 
-IAM & Admin
-OAuth Consent 
+- Create project in Google cloud GUI
+- Create credentials to access project 
+- Navigate to IAM & Admin
+- Configure OAuth Consent Screen
 - Create service account
-        - Role: Project/Editor
+    - Role: Project/Editor
     - Create json key
         - Storred in ./secrets/
 - Enable GKE API
