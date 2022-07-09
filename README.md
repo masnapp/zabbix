@@ -1,7 +1,7 @@
 <h1>How to install Zabbix using Docker, Google Cloud, and Terraform</h>
 
 <h2>Step 1:</h2> 
-- Create project in Google cloud GUI
+Create project in Google cloud GUI
 - Create credentials to access project 
 - Navigate to IAM & Admin
 - Configure OAuth Consent Screen
@@ -11,10 +11,11 @@
         - Storred in ./secrets/
 - Enable GKE API
 
-Step 2 
-- Create terraform directory 
+<h2>Step 2</h2>
+Create terraform directory 
 - Create main.tf
     - Declare Providers. In this case we will be declaring the Google Provider as we are using GCP.      
+
 ```terraform
 terraform {
   required_providers {
@@ -32,10 +33,11 @@ provider "google" {
   zone             = var.zone
 }
 ```
-Step 3: 
-- As you can see in the snippet above, we will be using variables for configuration information so we need to create two additional files. 
+<h2>Step 3:</h2>
+As you can see in the snippet above, we will be using variables for configuration information so we need to create two additional files. 
     - variables.tf
         - We will store variable declarations here 
+
 ```terraform
 # Project Variable, will prompt for project when ran
 variable "project" {}
@@ -57,6 +59,7 @@ variable "vpc_network" {
   default = "devops-network"
 }
 ```
+
 - terraform.tfvars
     - We will store variable values here 
 ```terraform
@@ -64,7 +67,9 @@ project          = "<project-id>"
 credentials_file = "<path/to/credential/file>"
 vpc_network      = "<network_name>"
 ```
-Step 3: 
+
+<h2>Step 3:</h2>
+
 CD to terraform directory and run:
 ```terraform
 terraform init
@@ -77,7 +82,7 @@ terraform plan
 ```
 We will see that there are no changes needed. 
 
-<b>Step 4:</b>
+<h2>Step 4:</h2>
 
 Now we need to create our resource that will hold our Zabbix container(s)
 In our case, we will host Zabbix on a Compute Enginer resource 
