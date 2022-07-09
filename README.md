@@ -1,6 +1,7 @@
 <h1>How to install Zabbix using Docker, Google Cloud, and Terraform</h>
 
 <h2>Step 1:</h2> 
+
 Create project in Google cloud GUI
 - Create credentials to access project 
 - Navigate to IAM & Admin
