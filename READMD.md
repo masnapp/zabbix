@@ -38,7 +38,7 @@ Step 3:
 - As you can see in the snippet above, we will be using variables for configuration information so we need to create two additional files. 
     - variables.tf
         - We will store variable declarations here 
-```
+```terraform
 # Project Variable, will prompt for project when ran
 variable "project" {}
 
@@ -61,14 +61,14 @@ variable "vpc_network" {
 ```
 - terraform.tfvars
     - We will store variable values here 
-```
+```terraform
 project          = "<project-id>"
 credentials_file = "<path/to/credential/file>"
 vpc_network      = "<network_name>"
 ```
 Step 3: 
 CD to terraform directory and run:
-```
+```terraform
 terraform init
 ```
 This will verify that our IaC that we have written thus far is correct
@@ -78,3 +78,7 @@ If we run:
 terraform plan 
 ```
 We will see that there are no changes needed. 
+
+Step 4: 
+Now we need to create our resource that will hold our Zabbix container(s)
+In our case, we will host Zabbix on a Compute Enginer resource 
