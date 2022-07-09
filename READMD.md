@@ -66,3 +66,7 @@ project          = "<project-id>"
 credentials_file = "<path/to/credential/file>"
 vpc_network      = "<network_name>"
 ```
+Step 3: 
+CD to terraform directory and run:
+### terraform init
+This will verify that our IaC that we have written thus far is correct

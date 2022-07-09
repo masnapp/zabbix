@@ -15,5 +15,5 @@ variable "zone" {
 }
 
 variable "vpc_network" {
-  default = "devops-network"
+  default = "my-network"
 }
