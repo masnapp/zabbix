@@ -79,6 +79,7 @@ terraform plan
 ```
 We will see that there are no changes needed. 
 
-Step 4: 
+<b>Step 4:</b>
+
 Now we need to create our resource that will hold our Zabbix container(s)
 In our case, we will host Zabbix on a Compute Enginer resource 
