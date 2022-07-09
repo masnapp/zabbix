@@ -14,10 +14,9 @@ Step 1:
 - Enable GKE API
 
 Step 2 
-    - Create terraform directory 
-    - Create main.tf
-        - Declare Providers. In this case we will be declaring the Google Provider as we are using GCP.
-        
+- Create terraform directory 
+- Create main.tf
+    - Declare Providers. In this case we will be declaring the Google Provider as we are using GCP.      
 ```
 terraform {
   required_providers {
@@ -36,7 +35,7 @@ provider "google" {
 }
 ```
 Step 3: 
-    As you can see in the snippet above, we will be using variables for configuration information so we need to create two additional files. 
+- As you can see in the snippet above, we will be using variables for configuration information so we need to create two additional files. 
     - variables.tf
         - We will store variable declarations here 
 ```
@@ -60,8 +59,8 @@ variable "vpc_network" {
   default = "devops-network"
 }
 ```
-    - terraform.tfvars
-        - We will store variable values here 
+- terraform.tfvars
+    - We will store variable values here 
 ```
 project          = "<project-id>"
 credentials_file = "<path/to/credential/file>"
