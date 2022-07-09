@@ -2,15 +2,6 @@ Goal:
 
 Spin up Zabbix container in GKE using Terraform. 
 
-Pertinent Info: 
-    - Gcloud Project Info 
-        - Project Name: project-main
-        - Project ID: project-main-355822
-        - Service Account: terraform 
-        - Service Account Email: terraform@project-main-355822.iam.gserviceaccount.com
-
-
-
 Step 1: 
     Create project in Google cloud GUI
     - Create credentials to access project 
