@@ -17,7 +17,7 @@ Step 2
 - Create terraform directory 
 - Create main.tf
     - Declare Providers. In this case we will be declaring the Google Provider as we are using GCP.      
-```
+```terraform
 terraform {
   required_providers {
     google = {
@@ -68,5 +68,13 @@ vpc_network      = "<network_name>"
 ```
 Step 3: 
 CD to terraform directory and run:
-### terraform init
+```
+terraform init
+```
 This will verify that our IaC that we have written thus far is correct
+
+If we run: 
+```terraform
+terraform plan 
+```
+We will see that there are no changes needed. 
