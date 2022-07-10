@@ -77,7 +77,7 @@ CD to terraform directory and run:
 ```terraform
 terraform init
 ```
-This will verify that our IaC that we have written thus far is correct
+This will verify that our IaC that we have written thus far is correct.
 
 If we run: 
 ```terraform
@@ -89,9 +89,9 @@ We will see that there are no changes needed.
 
 Now we need to create our resource that will hold our Zabbix container(s).
 
-In our case, we will host Zabbix on a Compute Instnace. In terraform the syntanx for this is `google_compute_instance`
+In our case, we will host Zabbix on a Compute Instnace. In terraform the syntanx for this is `google_compute_instance`.
 
-Add the following to the `main.tf` file create earlier
+Add the following to the `main.tf` file create earlier:
 
 ```terraform 
 variable "vm_name" {
@@ -105,7 +105,7 @@ variable "vm_image" {
     default = "cos-cloud/cos-97-lts"
 ```
 
-And then add the following to your `terraform.tfvars` file and replace values with your requirements. 
+And then add the following to your `terraform.tfvars` file and replace values with your requirements:
 
 ```terraform 
 vm_name = "ZABBIX-HOST"
@@ -113,4 +113,6 @@ machine_type = "e2-micro"
 vm_image = "cos-cloud/cos-97-lts"
 ```
 
-Now we can run `terraform plan` to verify our files are correct. We will see what resources terraform will destory or remove as denoted by either a + or -
+Now we can run `terraform plan` to verify our files are correct. We will see what resources terraform will destory or remove as denoted by either a + or - symbol.
+
+<!-- Need to create storage resources to store zabbix data -->
