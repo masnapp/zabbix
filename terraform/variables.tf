@@ -17,3 +17,14 @@ variable "zone" {
 variable "vpc_network" {
   default = "my-network"
 }
+
+variable "vm_name" {
+    default = "ZABBIX-HOST"
+}
+variable "machine_type" {
+    default = "e2-micro"
+}
+
+variable "vm_image" {
+    default = "cos-cloud/cos-97-lts"
+}
