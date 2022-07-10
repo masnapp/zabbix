@@ -46,7 +46,7 @@ resource "google_compute_instance" "vm_instance" {
     source = google_compute_disk.pd.self_link
     device_name = "data-disk-0"
     mode = "READ_WRITE"
-  }
+  }asdf
 
   network_interface {
     # A default network is created for all GCP projects
