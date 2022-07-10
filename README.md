@@ -13,6 +13,7 @@ Create project in Google cloud GUI
 - Enable GKE API
 
 <h2>Step 2</h2>
+
 Create terraform directory 
 - Create main.tf
     - Declare Providers. In this case we will be declaring the Google Provider as we are using GCP.      
@@ -35,6 +36,7 @@ provider "google" {
 }
 ```
 <h2>Step 3:</h2>
+
 As you can see in the snippet above, we will be using variables for configuration information so we need to create two additional files. 
     - variables.tf
         - We will store variable declarations here 
@@ -85,5 +87,5 @@ We will see that there are no changes needed.
 
 <h2>Step 4:</h2>
 
-Now we need to create our resource that will hold our Zabbix container(s)
-In our case, we will host Zabbix on a Compute Enginer resource 
+Now we need to create our resource that will hold our Zabbix container(s).
+In our case, we will host Zabbix on a Compute Instnace. In terraform the syntanx for this is ### google_compute_instance 
