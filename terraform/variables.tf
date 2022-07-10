@@ -19,7 +19,7 @@ variable "vpc_network" {
 }
 
 variable "vm_name" {
-    default = "ZABBIX-HOST"
+    default = "zabbix-host"
 }
 variable "machine_type" {
     default = "e2-micro"
