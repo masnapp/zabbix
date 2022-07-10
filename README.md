@@ -116,3 +116,7 @@ vm_image = "cos-cloud/cos-97-lts"
 Now we can run `terraform plan` to verify our files are correct. We will see what resources terraform will destory or remove as denoted by either a + or - symbol.
 
 <!-- Need to create storage resources to store zabbix data -->
+
+Now we need to create our compute resources. Add the following to the `main.tf` file 
+
+```

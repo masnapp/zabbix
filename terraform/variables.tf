@@ -28,3 +28,19 @@ variable "machine_type" {
 variable "vm_image" {
     default = "cos-cloud/cos-97-lts"
 }
+
+variable "pd_name" {
+  default = "zabbix-data"
+}
+
+variable "pd_size" {
+  default ="10"
+}
+
+variable "pd_type" {
+  default = "pd-standard"
+}
+
+variable "fw_name" {
+  default = "zabbix-firewall"
+}

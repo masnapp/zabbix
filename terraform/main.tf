@@ -14,17 +14,11 @@ provider "google" {
   zone             = var.zone
 }
 
-# Create VPC
-resource "google_compute_network" "vpc_network" {
-    name = var.vpc_network
-    auto_create_subnetworks = true
-}
-
 # Create data disk 
 resource "google_compute_disk" "pd" {
-    name = "zabbix-data"
-    size = 10 
-    type = "pd-standard"
+    name = var.pd_name
+    size = var.pd_size
+    type = var.pd_type
     labels = {
         enviorment = "zabbix"
     }
@@ -44,9 +38,9 @@ resource "google_compute_instance" "vm_instance" {
 
   attached_disk {
     source = google_compute_disk.pd.self_link
-    device_name = "data-disk-0"
+    # device_name = "data-disk-0"
     mode = "READ_WRITE"
-  }asdf
+  }
 
   network_interface {
     # A default network is created for all GCP projects
@@ -57,4 +51,22 @@ resource "google_compute_instance" "vm_instance" {
 
   metadata_startup_script = "${file("../scripts/zabbix_startup.sh")}"
 
+}
+
+# Create firewall resource to allow ingress to Zabbix server for SSH, HTTP(S), and ICMP
+resource "google_compute_firewall" "zabbix-firewall" {
+  name = var.fw_name
+  network = google_compute_network.vpc_network.self_link
+  description ="Allow ingress to zabbix server"
+  allow {
+    protocol = "all"
+  }
+  source_ranges = ["0.0.0.0/0"]
+  target_tags = ["zabbix"]
+}
+
+# Create VPC
+resource "google_compute_network" "vpc_network" {
+    name = var.vpc_network
+    auto_create_subnetworks = true
 }
