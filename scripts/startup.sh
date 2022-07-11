@@ -19,25 +19,25 @@ if [ ! -d $directory ]; then
       echo $uuid | sudo tee -a /etc/fstab
 fi
 
+# Create Zabbix Docker Network, if already exists, move on 
 
-
-
-# Create Zabbix Docker Network 
-
-docker network create --subnet 172.20.0.0/16 --ip-range 172.20.240.0/20 zabbix-net
+docker network create --subnet 172.20.0.0/16 --ip-range 172.20.240.0/20 zabbix-net  || echo "network already exists, moving on.."
 
 # Start emply MySql instance 
 
-docker run --name mysql-server -t \
+docker run --name mysql-server1 -e MYSQL_ROOT_PASSWORD=my-secret-pw -v mysql_data:/var/lib/mysql --network=zabbix-net -d mysql:8.0
+
+docker run --name mysql-server -it \
+      -v mysql_data:/var/lib/mysql \
       -e MYSQL_DATABASE="zabbix" \
       -e MYSQL_USER="zabbix" \
       -e MYSQL_PASSWORD="zabbix_pwd" \
       -e MYSQL_ROOT_PASSWORD="root_pwd" \
       --network=zabbix-net \
-      -d mysql:8.0 \
-      --restart unless-stopped \
+      mysql:8.0.29 \
       --character-set-server=utf8 --collation-server=utf8_bin \
-      --default-authentication-plugin=mysql_native_password
+      --default-authentication-plugin=mysql_native_password \
+      || echo "MySql server already exists"
 
 # Start Zabbix Server instance and link with MySql Instance 
 
@@ -47,11 +47,11 @@ docker run --name zabbix-server-mysql -t \
       -e MYSQL_USER="zabbix" \
       -e MYSQL_PASSWORD="zabbix_pwd" \
       -e MYSQL_ROOT_PASSWORD="root_pwd" \
-      -e ZBX_JAVAGATEWAY="zabbix-java-gateway" \
       --network=zabbix-net \
       -p 10051:10051 \
       --restart unless-stopped \
-      -d zabbix/zabbix-server-mysql:alpine-6.2-latest
+      -d zabbix/zabbix-server-mysql:alpine-6.2-latest \
+      || echo "Zabbix server already exists"
 
 # Start Zabbix Web Interface and link with the Zabbix Server and MySql instances 
 
@@ -65,4 +65,5 @@ docker run --name zabbix-web-nginx-mysql -t \
       --network=zabbix-net \
       -p 80:8080 \
       --restart unless-stopped \
-      -d zabbix/zabbix-web-nginx-mysql:alpine-6.2-latest
+      -d zabbix/zabbix-web-nginx-mysql:alpine-6.2-latest \
+      || echo "Zabbix server already exists"
