@@ -120,3 +120,23 @@ Now we can run `terraform plan` to verify our files are correct. We will see wha
 Now we need to create our compute resources. Add the following to the `main.tf` file 
 
 ```
+resource "google_compute_firewall" "allow-internal" {
+    name = "${var.project_name}-vpc-internal-fw"
+    network = google_compute_network.vpc.name
+    allow {
+      protocol = "icmp"
+    }
+    allow {
+        protocol = "tcp"
+        ports = ["0-65535"]
+    }
+    allow {
+      protocol = "udp"
+      ports = ["0-65535"]
+    }
+    source_ranges = [ 
+        var.private_subnet,
+        var.public_subnet
+     ]
+     target_tags = ["internal"]
+}

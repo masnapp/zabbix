@@ -1,3 +1,7 @@
+variable "project_name" {
+  default = "zabbix"
+}
+
 # Project Variable, will prompt for project when ran
 variable "project" {}
 
@@ -19,14 +23,14 @@ variable "vpc_network" {
 }
 
 variable "vm_name" {
-    default = "zabbix-host"
+  default = "zabbix-host"
 }
 variable "machine_type" {
-    default = "e2-micro"
+  default = "e2-micro"
 }
 
 variable "vm_image" {
-    default = "cos-cloud/cos-97-lts"
+  default = "cos-cloud/cos-97-lts"
 }
 
 variable "pd_name" {
@@ -34,7 +38,7 @@ variable "pd_name" {
 }
 
 variable "pd_size" {
-  default ="10"
+  default = "10"
 }
 
 variable "pd_type" {
@@ -44,3 +48,4 @@ variable "pd_type" {
 variable "fw_name" {
   default = "zabbix-firewall"
 }
+
